@@ -11,7 +11,13 @@
             <a href="#" class="align-middle">Logi sisse</a>
         </div>
         <div class="md:order-2 basis-full md:basis-2/4 text-center mt-4 md:mt-0">
-            <input class="w-3/4 text-2xl rounded-lg py-2" placeholder="Otsi raamat"/>
+            <input class="w-3/4 text-2xl rounded-lg py-2 px-2" placeholder="Otsi raamat" v-model="search" @input="$emit('search', search)"/>
         </div>
     </div>
 </template>
+
+<script setup>
+
+const search = useState('search')
+
+</script>
