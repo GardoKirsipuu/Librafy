@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <NuxtLink :to="`/book/${props.teavik.ISBN}`">
         <div class="rounded-2xl shadow-xl bg-white max-w-sm text-center h-96 xl:h-[36rem]">
             <img class="rounded-t-2xl h-3/4 w-full object-cover" :src="img_src">
             <div class="p-2 h-1/4 xl:text-xl">
@@ -7,7 +7,7 @@
                 <p class="">{{ props.teavik.autor }}</p>
             </div>
         </div>
-    </div>
+    </NuxtLink>
 </template>
 
 <script setup>
