@@ -1,14 +1,14 @@
 <template>
-    <ul class="text-xl flex flex-col text-start bg-teal-500 p-3 gap-y-2 shadow-2xl divide-y-2 divide-black">
-        <li class="flex flex-row items-center mx-auto" @click="logName">
-            <Icon name="material-symbols:add"/>
+    <div class="text-xl flex flex-col text-start bg-teal-500 p-2 pt-0 gap-y-2 divide-y-2 divide-black">
+        <NuxtLink to="/addBook" class="flex flex-row items-center mx-auto cursor-pointer" @click="$emit('closeDropdown')">
+            <Icon name="material-symbols:add" />
             <p>Lisa raamat</p>
-        </li>
-        <li class="flex flex-row items-center mx-auto pt-2" @click="logout">
-            <Icon name="material-symbols:logout"/>
+        </NuxtLink>
+        <div class="flex flex-row items-center mx-auto pt-2 cursor-pointer" @click="logout(); $emit('closeDropdown');">
+            <Icon name="material-symbols:logout" />
             <p>Logi välja</p>
-        </li>
-    </ul>
+        </div>
+    </div>
 </template>
 
 <script setup>
@@ -20,11 +20,10 @@ const logout = async () => {
     const { error } = await client.auth.signOut()
     if (error) {
         console.log(error)
+        return
     }
-}
-
-const logName = () => {
-    console.log(props.user.user_metadata)
+    alert('Oled välja logitud')
+    navigateTo('/')
 }
 
 </script>

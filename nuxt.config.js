@@ -24,6 +24,13 @@ export default defineNuxtConfig({
             'basis-1/4',
             'h-[30rem]',
             'object-cover',
+            'grid',
+            'grid-cols-3',
+            'col-span-3',
+            'flex',
+            'flex-col',
+            'justify-center',
+            'items-center'
         ]
     },
 })
