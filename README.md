@@ -1,6 +1,10 @@
-# Nuxt 3 Minimal Starter
+# About
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Librafy is a app and information system to make borrowing and handling resources in a library easier for its users and workers. It uses Nuxt 3 for the front-end and supabase for the backend and database.
+
+## Prerequisites
+
+- Node.js 16.10.0 or newer
 
 ## Setup
 
@@ -19,7 +23,7 @@ pnpm install
 
 ## Development Server
 
-Start the development server on http://localhost:3000
+Start the development server on http://localhost:3069
 
 ```bash
 npm run dev
@@ -39,4 +43,8 @@ Locally preview production build:
 npm run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Authors
+
+- Gardo Kirsipuu
+- Andero Ilmar Kõre
+- David-Andero Lellep
