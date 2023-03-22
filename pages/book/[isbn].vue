@@ -23,7 +23,10 @@
                 class="md:col-span-1 col-span-4 md:pt-0 pt-8 flex flex-col justify-between items-center font-semibold text-lg">
                 <div class="flex flex-col gap-8">
                     <h1>ISBN: {{ teavik.ISBN }}</h1>
-                    <h1>lmao</h1>
+                    <div>
+                        <h1 class="mb-2">Saadavus:</h1>
+                        <h1 v-for="tk in teavik_kogu" class="mb-1">{{ tk.Raamatukogud.nimi }}: {{ tk.Kogus }}tk</h1>
+                    </div>
                 </div>
                 <button @click="lmao()"
                     class="bg-teal-400 hover:bg-teal-300 py-2 w-1/2 my-6 rounded-2xl text-2xl font-semibold">Broneeri</button>
@@ -39,6 +42,7 @@ const client = useSupabaseClient()
 
 const isLoading = ref(false)
 const teavik = ref(null)
+const teavik_kogu = ref(null)
 const img_src = ref(null)
 
 async function fetchTeavik() {
@@ -53,6 +57,17 @@ async function fetchTeavik() {
         img_src.value = "https://atswlmvttmyajxhfylxi.supabase.co/storage/v1/object/public/teavik-pilt/" + teavik.value.pilt
     } else {
         teavik.value = null;
+    }
+    
+    const { data: data2, error: error2 } = await client.from('Teavik_kogu').select('Kogus, Raamatukogud(nimi)').eq('ISBN', route.params.isbn)
+    if (error2) {
+        console.error(error2)
+        return
+    }
+    if (data2 && data2.length > 0) {
+        teavik_kogu.value = data2;
+    } else {
+        teavik_kogu.value = null;
     }
     isLoading.value = false
 }
