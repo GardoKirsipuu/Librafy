@@ -23,7 +23,7 @@ const logout = async () => {
         return
     }
     alert('Oled välja logitud')
-    navigateTo('/')
+    window.location.reload()
 }
 
 </script>

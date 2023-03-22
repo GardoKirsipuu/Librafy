@@ -28,8 +28,8 @@
                         <h1 v-for="tk in teavik_kogu" class="mb-1">{{ tk.Raamatukogud.nimi }}: {{ tk.Kogus }}tk</h1>
                     </div>
                 </div>
-                <button @click="lmao()"
-                    class="bg-teal-400 hover:bg-teal-300 py-2 w-1/2 my-6 rounded-2xl text-2xl font-semibold">Broneeri</button>
+                <button v-if="client.headers.Authorization" @click="broneeri()" class="bg-teal-400 hover:bg-teal-300 py-2 w-1/2 my-6 rounded-2xl text-2xl font-semibold">Broneeri</button>
+                <button v-else="client.headers.Authorization" class="bg-neutral-400 py-2 w-fit px-2 my-6 rounded-2xl text-2xl font-semibold">Broneerimiseks logi sisse</button>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
 <script setup>
 const route = useRoute()
 
-const client = useSupabaseClient()
+const client = useSupabaseAuthClient()
 
 const isLoading = ref(false)
 const teavik = ref(null)
@@ -59,7 +59,7 @@ async function fetchTeavik() {
         teavik.value = null;
     }
     
-    const { data: data2, error: error2 } = await client.from('Teavik_kogu').select('Kogus, Raamatukogud(nimi)').eq('ISBN', route.params.isbn)
+    const { data: data2, error: error2 } = await client.from('Teavik_kogu').select('Kogus, Raamatukogud(*)').eq('ISBN', route.params.isbn)
     if (error2) {
         console.error(error2)
         return
@@ -70,12 +70,13 @@ async function fetchTeavik() {
         teavik_kogu.value = null;
     }
     isLoading.value = false
+    console.log(client)
 }
 
 onBeforeMount(fetchTeavik)
 
-const lmao = () => {
-    console.log("lmao")
+const broneeri = () => {
+    console.log(teavik_kogu.value)
 }
 </script>
 

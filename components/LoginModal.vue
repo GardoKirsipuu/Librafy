@@ -48,6 +48,7 @@ const handleSignin = async ({email, parool}) => {
     } else {
         alert("Sisselogimine õnnestus")
         closeClick()
+        window.location.reload()
         return user;
     }
 }

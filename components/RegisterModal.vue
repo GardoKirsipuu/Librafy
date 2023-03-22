@@ -80,6 +80,7 @@ const handleSignup = async () => {
         alert("Kasutaja loodud!")
         return user
         closeClick()
+        window.location.reload()
     }
 }
 
