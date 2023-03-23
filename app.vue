@@ -1,7 +1,7 @@
 <template>
   <div>
     <TheHeader @search="search = search" :user="user"/>
-    <NuxtPage :search-value="search" />
+    <NuxtPage :search-value="search" :user="user"/>
   </div>
 </template>
 

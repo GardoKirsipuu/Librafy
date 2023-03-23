@@ -28,11 +28,16 @@
                         <h1 v-for="tk in teavik_kogu" class="mb-1">{{ tk.Raamatukogud.nimi }}: {{ tk.Kogus }}tk</h1>
                     </div>
                 </div>
-                <button v-if="client.headers.Authorization" @click="broneeri()" class="bg-teal-400 hover:bg-teal-300 py-2 w-1/2 my-6 rounded-2xl text-2xl font-semibold">Broneeri</button>
-                <button v-else="client.headers.Authorization" class="bg-neutral-400 py-2 w-fit px-2 my-6 rounded-2xl text-2xl font-semibold">Broneerimiseks logi sisse</button>
+                <button v-if="client.headers.Authorization" @click="showLoanModal = !showLoanModal"
+                    class="bg-teal-400 hover:bg-teal-300 py-2 w-1/2 my-6 rounded-2xl text-2xl font-semibold">Broneeri</button>
+                <button v-else="client.headers.Authorization"
+                    class="bg-neutral-400 py-2 w-fit px-2 my-6 rounded-2xl text-2xl font-semibold">Broneerimiseks logi
+                    sisse</button>
             </div>
         </div>
     </div>
+
+    <LoanModal v-if="showLoanModal" @close-modal="showLoanModal = !showLoanModal" :tk="teavik_kogu" :user="props.user" />
 </template>
   
 <script setup>
@@ -40,10 +45,13 @@ const route = useRoute()
 
 const client = useSupabaseAuthClient()
 
+const props = defineProps(['user'])
 const isLoading = ref(false)
 const teavik = ref(null)
 const teavik_kogu = ref(null)
 const img_src = ref(null)
+
+const showLoanModal = ref(false)
 
 async function fetchTeavik() {
     isLoading.value = true
@@ -58,8 +66,8 @@ async function fetchTeavik() {
     } else {
         teavik.value = null;
     }
-    
-    const { data: data2, error: error2 } = await client.from('Teavik_kogu').select('Kogus, Raamatukogud(*)').eq('ISBN', route.params.isbn)
+
+    const { data: data2, error: error2 } = await client.from('Teavik_kogu').select('*, Raamatukogud(*)').eq('ISBN', route.params.isbn)
     if (error2) {
         console.error(error2)
         return
@@ -70,14 +78,9 @@ async function fetchTeavik() {
         teavik_kogu.value = null;
     }
     isLoading.value = false
-    console.log(client)
 }
 
 onBeforeMount(fetchTeavik)
-
-const broneeri = () => {
-    console.log(teavik_kogu.value)
-}
 </script>
 
 <style>
