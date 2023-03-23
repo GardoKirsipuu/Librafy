@@ -10,10 +10,14 @@
             <Icon name="material-symbols:account-circle" />
             <a href="#" class="align-middle" @click="showLoginModal = !showLoginModal">Logi sisse</a>
         </div>
-        <div v-else class="md:order-3 basis-1/2 md:basis-1/4 text-end pr-8 md:text-3xl text-2xl hover:font-semibold relative" @mouseleave="showDropdown = false">
+        <div v-else
+            class="md:order-3 basis-1/2 md:basis-1/4 text-end pr-8 md:text-3xl text-2xl hover:font-semibold relative"
+            @mouseleave="showDropdown = false">
             <Icon name="material-symbols:account-circle" @click="showDropdown = !showDropdown" class="cursor-pointer" />
-            <a href="#" @click="showDropdown = !showDropdown" class="align-middle">{{ props.user.user_metadata.eesnimi }}</a>
-            <Dropdown @closeDropdown="showDropdown = false" id="dropdown" v-show="showDropdown" :user="props.user" class="absolute md:right-5 right-2 md:rounded-2xl rounded-b-2xl" />
+            <a href="#" @click="showDropdown = !showDropdown" class="align-middle">{{ props.user.user_metadata.eesnimi
+            }}</a>
+            <Dropdown @closeDropdown="showDropdown = false" id="dropdown" v-show="showDropdown" :user="props.user"
+                class="absolute right-0 md:rounded-2xl rounded-b-2xl" />
         </div>
         <div class="md:order-2 basis-full md:basis-2/4 text-center mt-4 md:mt-0">
             <input class="w-3/4 text-2xl rounded-lg py-2 px-2" placeholder="Otsi raamat" v-model="search"

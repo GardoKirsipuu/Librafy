@@ -7,7 +7,7 @@
         </NuxtLink>
         <NuxtLink to="/userLoan" class="flex flex-row items-center mx-auto cursor-pointer" @click="$emit('closeDropdown')">
             <Icon name="material-symbols:book" />
-            <p>Laenutused</p>
+            <p>Minu laenutused</p>
         </NuxtLink>
         <div class="flex flex-row items-center mx-auto pt-2 cursor-pointer" @click="logout(); $emit('closeDropdown');">
             <Icon name="material-symbols:logout" />
