@@ -1,8 +1,13 @@
 <template>
-    <div class="text-xl flex flex-col text-start bg-teal-500 p-2 pt-0 gap-y-2 divide-y-2 divide-black">
+    <div
+        class="text-xl flex flex-col flex-wrap justify-center text-start bg-teal-500 p-2 pt-0 gap-y-2 divide-y-2 divide-black">
         <NuxtLink to="/addBook" class="flex flex-row items-center mx-auto cursor-pointer" @click="$emit('closeDropdown')">
             <Icon name="material-symbols:add" />
             <p>Lisa raamat</p>
+        </NuxtLink>
+        <NuxtLink to="/userLoan" class="flex flex-row items-center mx-auto cursor-pointer" @click="$emit('closeDropdown')">
+            <Icon name="material-symbols:book" />
+            <p>Laenutused</p>
         </NuxtLink>
         <div class="flex flex-row items-center mx-auto pt-2 cursor-pointer" @click="logout(); $emit('closeDropdown');">
             <Icon name="material-symbols:logout" />

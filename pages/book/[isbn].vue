@@ -37,7 +37,8 @@
         </div>
     </div>
 
-    <LoanModal v-if="showLoanModal" @close-modal="showLoanModal = !showLoanModal" :tk="teavik_kogu" :user="props.user" />
+    <LoanModal v-if="showLoanModal" @close-modal="showLoanModal = !showLoanModal" :tk="teavik_kogu" :user="props.user"
+        :isbn="teavik.ISBN" />
 </template>
   
 <script setup>

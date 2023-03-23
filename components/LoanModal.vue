@@ -20,14 +20,14 @@
 <script setup>
 const emit = defineEmits(['closeModal'])
 const client = useSupabaseAuthClient()
-const props = defineProps(['tk', 'user'])
+const props = defineProps(['tk', 'user', 'isbn'])
 const tkId = ref(null)
-
 const handleLoan = async () => {
     const { data, error } = await client.from('Laenutus').insert([
         {
             TK_ID: tkId.value,
             user_id: props.user.id,
+            ISBN: props.isbn
         }
     ])
     if (error) {
