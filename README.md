@@ -1,3 +1,5 @@
+<h1 align="center">Librafy</h1>
+
 # About
 
 Librafy is a app and information system to make borrowing and handling resources in a library easier for its users and workers. It uses Nuxt 3 for the front-end and supabase for the backend and database.
